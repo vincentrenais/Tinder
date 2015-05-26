@@ -14,6 +14,7 @@
 		B78B06281B141DC400EF7B0E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78B06261B141DC400EF7B0E /* LaunchScreen.xib */; };
 		B78B06341B141DC500EF7B0E /* TinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B06331B141DC500EF7B0E /* TinderTests.swift */; };
 		B78B06411B14246400EF7B0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B78B06401B14246400EF7B0E /* Main.storyboard */; };
+		B78B06431B14E4AA00EF7B0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B06421B14E4AA00EF7B0E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		B78B06331B141DC500EF7B0E /* TinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderTests.swift; sourceTree = "<group>"; };
 		B78B063D1B1421B400EF7B0E /* Tinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinder-Bridging-Header.h"; sourceTree = "<group>"; };
 		B78B06401B14246400EF7B0E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B78B06421B14E4AA00EF7B0E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B78B061D1B141DC400EF7B0E /* AppDelegate.swift */,
 				B78B06401B14246400EF7B0E /* Main.storyboard */,
 				B78B061F1B141DC400EF7B0E /* ViewController.swift */,
+				B78B06421B14E4AA00EF7B0E /* User.swift */,
 				B78B06241B141DC400EF7B0E /* Images.xcassets */,
 				B78B06261B141DC400EF7B0E /* LaunchScreen.xib */,
 				B78B061B1B141DC400EF7B0E /* Supporting Files */,
@@ -275,6 +278,7 @@
 			files = (
 				B78B06201B141DC400EF7B0E /* ViewController.swift in Sources */,
 				B78B061E1B141DC400EF7B0E /* AppDelegate.swift in Sources */,
+				B78B06431B14E4AA00EF7B0E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
