@@ -34,29 +34,12 @@
                     </view>
                     <connections>
                         <outlet property="FacebookLoginButton" destination="v4U-7h-Yvs" id="3Py-SN-8kc"/>
+                        <segue destination="LOG-CL-rSZ" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="ZWz-y1-q2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="485" y="448"/>
-        </scene>
-        <!--Find View Controller-->
-        <scene sceneID="KVd-SI-i6a">
-            <objects>
-                <viewController id="dgW-2V-2fy" customClass="FindViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1VU-Q1-SAH"/>
-                        <viewControllerLayoutGuide type="bottom" id="Thu-0C-uZP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6nM-je-Ycx">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xSa-1w-ZIG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="485" y="1200"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="mqY-hB-H7h">
@@ -64,12 +47,12 @@
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="uns-Tf-DS3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHV-SI-y1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="448"/>
+            <point key="canvasLocation" x="485" y="-268"/>
         </scene>
-        <!--View Controller-->
+        <!--Find View Controller-->
         <scene sceneID="A3g-As-pVQ">
             <objects>
-                <viewController id="LOG-CL-rSZ" sceneMemberID="viewController">
+                <viewController id="LOG-CL-rSZ" customClass="FindViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bch-BX-gKr"/>
                         <viewControllerLayoutGuide type="bottom" id="of0-4R-2qo"/>
@@ -78,22 +61,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-bA-xep">
-                                <rect key="frame" x="143" y="83" width="314" height="314"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-bA-xep">
+                                <rect key="frame" x="160" y="50" width="280" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="KqF-Pm-8aO"/>
+                                    <constraint firstAttribute="height" constant="280" id="qFg-pY-7lJ"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-RC-hJw">
-                                <rect key="frame" x="357" y="405" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nope" translatesAutoresizingMaskIntoConstraints="NO" id="5A8-jf-JcU">
+                                <rect key="frame" x="160" y="412" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Up6-Sm-T3h"/>
+                                    <constraint firstAttribute="height" constant="100" id="W5X-5f-oDK"/>
+                                </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5A8-jf-JcU">
-                                <rect key="frame" x="143" y="405" width="100" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vincent Renais" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hA-pd-VK7">
+                                <rect key="frame" x="160" y="338" width="280" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="NUB-Ja-7mP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vincentrenais@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUR-Kd-O0y">
+                                <rect key="frame" x="160" y="367" width="280" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="yHG-63-OMh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <color key="textColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ok" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-RC-hJw">
+                                <rect key="frame" x="340" y="412" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="uVq-9L-Qbr"/>
+                                    <constraint firstAttribute="height" constant="100" id="w3V-zw-UuX"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nvQ-bA-xep" firstAttribute="top" secondItem="bch-BX-gKr" secondAttribute="bottom" constant="30" id="LKf-7b-ljb"/>
+                            <constraint firstItem="QUR-Kd-O0y" firstAttribute="top" secondItem="3hA-pd-VK7" secondAttribute="bottom" id="MM3-yI-ac7"/>
+                            <constraint firstItem="3hA-pd-VK7" firstAttribute="top" secondItem="nvQ-bA-xep" secondAttribute="bottom" constant="8" id="MmQ-f9-sVO"/>
+                            <constraint firstItem="oTs-RC-hJw" firstAttribute="top" secondItem="QUR-Kd-O0y" secondAttribute="bottom" constant="20" id="UWm-uZ-pbk"/>
+                            <constraint firstAttribute="centerX" secondItem="QUR-Kd-O0y" secondAttribute="centerX" id="ZTk-xu-8eh"/>
+                            <constraint firstAttribute="centerX" secondItem="nvQ-bA-xep" secondAttribute="centerX" id="dvc-br-2Oj"/>
+                            <constraint firstItem="5A8-jf-JcU" firstAttribute="top" secondItem="QUR-Kd-O0y" secondAttribute="bottom" constant="20" id="eXx-Sj-HQZ"/>
+                            <constraint firstAttribute="centerX" secondItem="3hA-pd-VK7" secondAttribute="centerX" id="sqv-gc-P7X"/>
+                            <constraint firstItem="nvQ-bA-xep" firstAttribute="trailing" secondItem="oTs-RC-hJw" secondAttribute="trailing" id="t4u-HU-OXy"/>
+                            <constraint firstItem="nvQ-bA-xep" firstAttribute="leading" secondItem="5A8-jf-JcU" secondAttribute="leading" id="x1o-U5-XSl"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30O-us-KRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981" y="448"/>
+            <point key="canvasLocation" x="1221" y="448"/>
         </scene>
         <!--Page ContentVC-->
         <scene sceneID="GDd-oi-Qj7">
@@ -132,7 +157,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wb0-FX-I4A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="1200"/>
+            <point key="canvasLocation" x="485" y="1192"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar" width="280" height="280"/>
+        <image name="nope" width="150" height="150"/>
+        <image name="ok" width="150" height="150"/>
+    </resources>
 </document>

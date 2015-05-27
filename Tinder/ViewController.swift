@@ -28,15 +28,20 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
         
         FacebookLoginButton.delegate = self
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, do work such as go to next view controller.
-        }
-        
         reset()
     }
     
     
+    override func viewDidAppear(animated: Bool) {
+    
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            println("segue should work")
+            
+            self.performSegueWithIdentifier("loginSegue", sender: self)
+        }
+    
+    }
     
     @IBAction func swipeLeft(sender: AnyObject) {
         println("Swipe left")
@@ -122,6 +127,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
     {
         println("User Logged In")
         
+        self.performSegueWithIdentifier("loginSegue", sender: self)
+        
         if ((error) != nil)
         {
             // Process error
@@ -151,15 +158,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
                                 {
                                     parseUser["name"] = result["name"]
                                     parseUser["email"] = result["email"]
-                                    if let pictureResult = result["picture"] as? NSDictionary
-                                    {
-                                        if let pictureData = pictureResult["data"] as? NSDictionary
-                                        {
-                                            if let picture = pictureData["url"] as? String
-                                            {
-                                                parseUser["photo"] = picture
-                                            }
-                                        }
+                                    if let pictureResult = result["picture"] as? NSDictionary, pictureData = pictureResult["data"] as? NSDictionary, picture = pictureData["url"] as? String {
+                                        parseUser["photo"] = picture
                                     }
                                     parseUser.saveInBackground()
                             }
