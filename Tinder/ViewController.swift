@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
-    @IBOutlet var FacebookLoginButton: FBSDKLoginButton!
+    @IBOutlet var facebookLoginButton: FBSDKLoginButton!
     
     let pageTitles = ["", "", "", ""]
     
@@ -26,7 +26,9 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        FacebookLoginButton.delegate = self
+        facebookLoginButton.delegate = self
+        
+        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
         
         reset()
     }
@@ -35,13 +37,70 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
     
     override func viewDidAppear(animated: Bool) {
     
-        if (FBSDKAccessToken.currentAccessToken() != nil)
+        if let user = PFUser.currentUser()
         {
-            println("segue should work")
-            
             self.performSegueWithIdentifier("loginSegue", sender: self)
         }
+    }
     
+    // Facebook Delegate Methods
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
+    {
+        println("User Logged In")
+        
+//        self.performSegueWithIdentifier("loginSegue", sender: self)
+        
+        if ((error) != nil)
+        {
+            // Process error
+        }
+        else if result.isCancelled
+        {
+            // Handle cancellations
+        }
+        else
+        {
+            
+            PFFacebookUtils.logInInBackgroundWithAccessToken(result.token, block: { (user: PFUser?, error: NSError?) -> Void in
+                if let parseUser = user
+                {
+                    println("User logged in through Facebook!");
+                    
+                    let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me?fields=email,name,picture", parameters: nil)
+                    graphRequest.startWithCompletionHandler({ (connection :FBSDKGraphRequestConnection!, result: AnyObject!, error :NSError!) -> Void in
+                        println("lol")
+                        if error != nil {
+                            
+                        } else {
+                            println("\(result)")
+                            if let name = result["name"] as? String{
+                                parseUser["name"] = name
+                            }
+                            
+                            if let email = result["email"] as? String{
+                                parseUser["email"] = email
+                            }
+                            
+                            if let pictureResult = result["picture"] as? NSDictionary,
+                                pictureData = pictureResult["data"] as? NSDictionary,
+                                picture = pictureData["url"] as? String {
+                                       parseUser["photo"] = picture
+                                 }
+                            parseUser.saveInBackground()
+                            self.performSegueWithIdentifier("loginSegue", sender: self)
+                        }
+                    })
+                } else
+                {
+                    println("Uh oh. There was an error logging in.")
+                }
+            })
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        println("User Logged Out")
     }
     
     @IBAction func swipeLeft(sender: AnyObject) {
@@ -115,66 +174,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
-    }
-    
-    
-    
-    
-    
-    
-    // Facebook Delegate Methods
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
-    {
-        println("User Logged In")
-        
-//        self.performSegueWithIdentifier("loginSegue", sender: self)
-        
-        if ((error) != nil)
-        {
-            // Process error
-        }
-        else if result.isCancelled
-        {
-            // Handle cancellations
-        }
-        else
-        {
-            
-            PFFacebookUtils.logInInBackgroundWithAccessToken(result.token, block: { (user: PFUser?, error: NSError?) -> Void in
-                if let parseUser = user
-                {
-                    println("User logged in through Facebook!");
-                    
-                    let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me?fields=email,name,picture", parameters: nil)
-                    graphRequest.startWithCompletionHandler(
-                        {
-                            (connection, result, error) -> Void in
-                        
-                                if (error != nil)
-                                {
-                                    // Process error
-                                    println("Error: \(error)")
-                                } else
-                                {
-                                    parseUser["name"] = result["name"]
-                                    parseUser["email"] = result["email"]
-                                    if let pictureResult = result["picture"] as? NSDictionary, pictureData = pictureResult["data"] as? NSDictionary, picture = pictureData["url"] as? String {
-                                        parseUser["photo"] = picture
-                                    }
-                                    parseUser.saveInBackground()
-                            }
-                    })
-                } else
-                {
-                    println("Uh oh. There was an error logging in.")
-                }
-            })
-        }
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
     }
 
 }

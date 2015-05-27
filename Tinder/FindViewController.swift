@@ -29,12 +29,12 @@ class FindViewController: UIViewController {
             {
                 for user in users!
                 {
-//                    if user as? NSObject == PFUser.currentUser()
-//                    {
-//                        continue
-//                    }
-//                    else
-//                    {
+                    if user as? NSObject == PFUser.currentUser()
+                    {
+                        continue
+                    }
+                    else
+                    {
                         let name = user["name"] as? String
                         self.userName.text = name!
                         let email = user["email"] as? String
@@ -43,27 +43,9 @@ class FindViewController: UIViewController {
                         let url = NSURL(string: photo!)
                         let imageData = NSData(contentsOfURL: url!)
                         self.userPhoto.image = UIImage(data: imageData!)
-//                    }
-                    
+                    }
                 }
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
