@@ -21,7 +21,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
     var pageViewController : UIPageViewController!
     
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,6 +31,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
         reset()
     }
     
+
     
     override func viewDidAppear(animated: Bool) {
     
@@ -127,7 +128,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
     {
         println("User Logged In")
         
-        self.performSegueWithIdentifier("loginSegue", sender: self)
+//        self.performSegueWithIdentifier("loginSegue", sender: self)
         
         if ((error) != nil)
         {
