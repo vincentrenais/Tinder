@@ -53,7 +53,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-bA-xep">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-bA-xep">
                                 <rect key="frame" x="160" y="90" width="280" height="280"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -151,7 +151,4 @@
             <point key="canvasLocation" x="1221" y="448"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="avatar" width="280" height="280"/>
-    </resources>
 </document>

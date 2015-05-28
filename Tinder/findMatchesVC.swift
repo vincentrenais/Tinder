@@ -63,7 +63,8 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
                 let url = NSURL(string: photo!)
                 let imageData = NSData(contentsOfURL: url!)
                 self.userPhoto.image = UIImage(data: imageData!)
-                
+                self.userPhoto.layer.cornerRadius = 8
+                self.userPhoto.clipsToBounds = true
                 self.currentMatch = i
             }
         }
@@ -88,9 +89,6 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    
-    
-    
     override func viewDidAppear(animated: Bool) {
         
         self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
@@ -98,16 +96,5 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
         self.goBackButton.setImage(UIImage(named: "goBack.png") as UIImage!, forState: nil)
         self.goBackButton.alpha = 0
     }
-    
-   
-    
-    
-    // JAMES LESSON
-    
-    
-    
-    
-    
-    
     
 }

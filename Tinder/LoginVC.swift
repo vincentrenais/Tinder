@@ -8,20 +8,13 @@
 
 import UIKit
 
-class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
+class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
     
     @IBOutlet var facebookLoginButton: FBSDKLoginButton!
+    var locationManager = CLLocationManager()
+    var userLatitude = 0.0
+    var userLongitude = 0.0
     
-    let pageTitles = ["", "", "", ""]
-    
-    var images = ["long3.png","long4.png","long1.png","long2.png"]
-    
-    var count = 0
-    
-    var pageViewController : UIPageViewController!
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -29,24 +22,38 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
         facebookLoginButton.delegate = self
         
         facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        
+        self.locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
 
     }
-//    override func viewDidAppear(animated: Bool) {
-//    
-//        if let user = PFUser.currentUser()
-//        {
-//            self.performSegueWithIdentifier("loginSegue", sender: self)
-//        }
-//    }
     
-    // Facebook Delegate Methods
+    
+    override func viewDidAppear(animated: Bool) {
+    
+        if let user = PFUser.currentUser()
+        {
+            self.performSegueWithIdentifier("loginSegue", sender: self)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        let location = locations[0] as! CLLocation
+        
+        self.userLatitude = location.coordinate.latitude
+        self.userLongitude = location.coordinate.longitude
+    }
+    
+    // FACEBOOK DELEGATE METHOD
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!)
     {
         println("User Logged In")
-        
-//        self.performSegueWithIdentifier("loginSegue", sender: self)
-        
+                
         if ((error) != nil)
         {
             // Process error
@@ -82,7 +89,12 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
                                 picture = pictureData["url"] as? String {
                                        parseUser["photo"] = picture
                                  }
+                            
+                            parseUser["latitude"] = self.userLatitude
+                            parseUser["longitude"] = self.userLongitude
+                            
                             parseUser.saveInBackground()
+                            
                             self.performSegueWithIdentifier("loginSegue", sender: self)
                         }
                     })
