@@ -22,6 +22,9 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
     var currentMatch = 0
     var listOfRequest = []
     
+    var userLatitude: Double?
+    var userLongitude: Double?
+    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -34,11 +37,32 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
+        self.okButton.setImage(UIImage(named: "ok.png") as UIImage!, forState: nil)
+        self.goBackButton.setImage(UIImage(named: "goBack.png") as UIImage!, forState: nil)
+        self.goBackButton.alpha = 0
+        
+        if let user = PFUser.currentUser()
+        {
+            user["latitude"] = self.userLatitude
+            user["longitude"] = self.userLongitude
+        }
+    }
+
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         let location = locations[0] as! CLLocation
-        println("Latitude: \(location.coordinate.latitude). Longitude: \(location.coordinate.longitude).")
+
+        if let user = PFUser.currentUser()
+        {
+            self.userLatitude = location.coordinate.latitude
+            self.userLongitude = location.coordinate.longitude
+        }
     }
     
     
@@ -87,14 +111,5 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
         self.goBackButton.alpha = 0
         
     }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
-        self.okButton.setImage(UIImage(named: "ok.png") as UIImage!, forState: nil)
-        self.goBackButton.setImage(UIImage(named: "goBack.png") as UIImage!, forState: nil)
-        self.goBackButton.alpha = 0
-    }
-    
+
 }

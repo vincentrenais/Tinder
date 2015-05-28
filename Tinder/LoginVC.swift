@@ -12,8 +12,8 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDele
     
     @IBOutlet var facebookLoginButton: FBSDKLoginButton!
     var locationManager = CLLocationManager()
-    var userLatitude = 0.0
-    var userLongitude = 0.0
+    var userLatitude: Double?
+    var userLongitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +32,13 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDele
     }
     
     
-    override func viewDidAppear(animated: Bool) {
-    
-        if let user = PFUser.currentUser()
-        {
-            self.performSegueWithIdentifier("loginSegue", sender: self)
-        }
-    }
+//    override func viewDidAppear(animated: Bool) {
+//    
+//        if let user = PFUser.currentUser()
+//        {
+//            self.performSegueWithIdentifier("loginSegue", sender: self)
+//        }
+//    }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
