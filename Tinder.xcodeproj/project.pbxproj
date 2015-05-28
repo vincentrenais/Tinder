@@ -8,10 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3F3259DD04DD5DA7457BCFBB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3319958D34FBD0E93A88F0A3 /* libPods.a */; };
-		B783510D1B15683400101D36 /* PageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B783510C1B15683400101D36 /* PageContentVC.swift */; };
-		B78351111B162B9A00101D36 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78351101B162B9A00101D36 /* FindViewController.swift */; };
+		B78351111B162B9A00101D36 /* findMatchesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78351101B162B9A00101D36 /* findMatchesVC.swift */; };
 		B78B061E1B141DC400EF7B0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B061D1B141DC400EF7B0E /* AppDelegate.swift */; };
-		B78B06201B141DC400EF7B0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B061F1B141DC400EF7B0E /* ViewController.swift */; };
+		B78B06201B141DC400EF7B0E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B061F1B141DC400EF7B0E /* LoginVC.swift */; };
 		B78B06251B141DC400EF7B0E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B78B06241B141DC400EF7B0E /* Images.xcassets */; };
 		B78B06281B141DC400EF7B0E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78B06261B141DC400EF7B0E /* LaunchScreen.xib */; };
 		B78B06341B141DC500EF7B0E /* TinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B06331B141DC500EF7B0E /* TinderTests.swift */; };
@@ -33,12 +32,11 @@
 		3319958D34FBD0E93A88F0A3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C2979BACEDBA6703A35ACED /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		68B25E35A689C6064E567288 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		B783510C1B15683400101D36 /* PageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageContentVC.swift; sourceTree = "<group>"; };
-		B78351101B162B9A00101D36 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
+		B78351101B162B9A00101D36 /* findMatchesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = findMatchesVC.swift; sourceTree = "<group>"; };
 		B78B06181B141DC400EF7B0E /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78B061C1B141DC400EF7B0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B78B061D1B141DC400EF7B0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B78B061F1B141DC400EF7B0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B78B061F1B141DC400EF7B0E /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B78B06241B141DC400EF7B0E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B78B06271B141DC400EF7B0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B78B062D1B141DC500EF7B0E /* TinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,9 +108,8 @@
 			children = (
 				B78B061D1B141DC400EF7B0E /* AppDelegate.swift */,
 				B78B06401B14246400EF7B0E /* Main.storyboard */,
-				B78B061F1B141DC400EF7B0E /* ViewController.swift */,
-				B783510C1B15683400101D36 /* PageContentVC.swift */,
-				B78351101B162B9A00101D36 /* FindViewController.swift */,
+				B78B061F1B141DC400EF7B0E /* LoginVC.swift */,
+				B78351101B162B9A00101D36 /* findMatchesVC.swift */,
 				B78B06421B14E4AA00EF7B0E /* User.swift */,
 				B78B06241B141DC400EF7B0E /* Images.xcassets */,
 				B78B06261B141DC400EF7B0E /* LaunchScreen.xib */,
@@ -282,11 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B78351111B162B9A00101D36 /* FindViewController.swift in Sources */,
-				B78B06201B141DC400EF7B0E /* ViewController.swift in Sources */,
+				B78351111B162B9A00101D36 /* findMatchesVC.swift in Sources */,
+				B78B06201B141DC400EF7B0E /* LoginVC.swift in Sources */,
 				B78B061E1B141DC400EF7B0E /* AppDelegate.swift in Sources */,
 				B78B06431B14E4AA00EF7B0E /* User.swift in Sources */,
-				B783510D1B15683400101D36 /* PageContentVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

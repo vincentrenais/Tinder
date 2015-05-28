@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="vXZ-lx-hvc" customClass="LoginVC" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4U-7h-Yvs" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="16" y="547" width="568" height="40"/>
+                                <rect key="frame" x="16" y="535" width="568" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="28F-bF-wyX"/>
@@ -27,7 +27,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="v4U-7h-Yvs" secondAttribute="bottom" constant="13" id="CMp-a9-sVO"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="v4U-7h-Yvs" secondAttribute="bottom" constant="25" id="CMp-a9-sVO"/>
                             <constraint firstItem="v4U-7h-Yvs" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="t9j-v6-hiK"/>
                             <constraint firstItem="v4U-7h-Yvs" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="vQC-PE-cUZ"/>
                         </constraints>
@@ -41,18 +41,10 @@
             </objects>
             <point key="canvasLocation" x="485" y="448"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="mqY-hB-H7h">
-            <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="uns-Tf-DS3" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wHV-SI-y1W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="485" y="-268"/>
-        </scene>
-        <!--Find View Controller-->
+        <!--Find MatchesVC-->
         <scene sceneID="A3g-As-pVQ">
             <objects>
-                <viewController id="LOG-CL-rSZ" customClass="FindViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="findMatchesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LOG-CL-rSZ" customClass="FindMatchesVC" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bch-BX-gKr"/>
                         <viewControllerLayoutGuide type="bottom" id="of0-4R-2qo"/>
@@ -63,6 +55,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="nvQ-bA-xep">
                                 <rect key="frame" x="160" y="90" width="280" height="280"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="KqF-Pm-8aO"/>
                                     <constraint firstAttribute="height" constant="280" id="qFg-pY-7lJ"/>
@@ -87,7 +80,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIO-84-1Sc">
-                                <rect key="frame" x="160" y="447" width="30" height="30"/>
+                                <rect key="frame" x="160" y="447" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="BcS-3R-p9a"/>
+                                    <constraint firstAttribute="height" constant="120" id="veG-C3-4h1"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -96,7 +93,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-dw-udN">
-                                <rect key="frame" x="394" y="447" width="30" height="30"/>
+                                <rect key="frame" x="304" y="447" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="VVV-Ha-l6Z"/>
+                                    <constraint firstAttribute="height" constant="120" id="WYT-il-3yo"/>
+                                </constraints>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -104,10 +105,27 @@
                                     <action selector="okButtonPressed:" destination="LOG-CL-rSZ" eventType="touchUpInside" id="gQq-Yh-vhO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhU-6Q-qS4">
+                                <rect key="frame" x="160" y="568" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="6EY-3H-8F8"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="SOq-Pa-bZj"/>
+                                    <constraint firstAttribute="height" constant="50" id="gGD-Tp-CWy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="tz9-pc-K2M"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBackButtonPressed:" destination="LOG-CL-rSZ" eventType="touchUpInside" id="UeL-5i-o5z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="x0h-dw-udN" firstAttribute="top" secondItem="QUR-Kd-O0y" secondAttribute="bottom" constant="15" id="3du-pX-Ene"/>
+                            <constraint firstItem="GhU-6Q-qS4" firstAttribute="top" secondItem="HIO-84-1Sc" secondAttribute="bottom" constant="1" id="AhU-wd-AAa"/>
+                            <constraint firstItem="HIO-84-1Sc" firstAttribute="leading" secondItem="GhU-6Q-qS4" secondAttribute="leading" id="DIC-JS-Djj"/>
                             <constraint firstItem="nvQ-bA-xep" firstAttribute="top" secondItem="bch-BX-gKr" secondAttribute="bottom" constant="70" id="LKf-7b-ljb"/>
                             <constraint firstItem="QUR-Kd-O0y" firstAttribute="top" secondItem="3hA-pd-VK7" secondAttribute="bottom" id="MM3-yI-ac7"/>
                             <constraint firstItem="3hA-pd-VK7" firstAttribute="top" secondItem="nvQ-bA-xep" secondAttribute="bottom" constant="8" id="MmQ-f9-sVO"/>
@@ -120,6 +138,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="goBackButton" destination="GhU-6Q-qS4" id="ztb-ac-PPK"/>
                         <outlet property="nopeButton" destination="HIO-84-1Sc" id="jjt-Lv-nU9"/>
                         <outlet property="okButton" destination="x0h-dw-udN" id="HpS-Ax-uIX"/>
                         <outlet property="userEmail" destination="QUR-Kd-O0y" id="Ngq-qV-D6x"/>
@@ -130,45 +149,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="30O-us-KRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1221" y="448"/>
-        </scene>
-        <!--Page ContentVC-->
-        <scene sceneID="GDd-oi-Qj7">
-            <objects>
-                <viewController storyboardIdentifier="PageContentViewController" id="PyE-5T-Xa6" customClass="PageContentVC" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="631-t1-lmb"/>
-                        <viewControllerLayoutGuide type="bottom" id="bXR-4f-4gr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dOk-po-o37">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qOw-nt-OwP">
-                                <rect key="frame" x="16" y="20" width="568" height="560"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Way to Success" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzB-O2-dvH">
-                                <rect key="frame" x="238" y="98" width="124" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qOw-nt-OwP" firstAttribute="leading" secondItem="dOk-po-o37" secondAttribute="leadingMargin" id="D06-Nb-0uc"/>
-                            <constraint firstItem="qOw-nt-OwP" firstAttribute="top" secondItem="631-t1-lmb" secondAttribute="bottom" id="r96-X2-d8Q"/>
-                            <constraint firstItem="qOw-nt-OwP" firstAttribute="trailing" secondItem="dOk-po-o37" secondAttribute="trailingMargin" id="rNf-RE-Zt8"/>
-                            <constraint firstItem="bXR-4f-4gr" firstAttribute="top" secondItem="qOw-nt-OwP" secondAttribute="bottom" constant="20" id="w81-iG-kaJ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="bkImageView" destination="qOw-nt-OwP" id="KjW-wk-mK6"/>
-                        <outlet property="heading" destination="qzB-O2-dvH" id="ha1-wX-2BY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wb0-FX-I4A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="485" y="1192"/>
         </scene>
     </scenes>
     <resources>
