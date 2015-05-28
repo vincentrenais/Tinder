@@ -13,7 +13,23 @@ class FindViewController: UIViewController {
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userEmail: UILabel!
+    
+    @IBOutlet weak var nopeButton: UIButton!
+    @IBOutlet weak var okButton: UIButton!
+    
 
+    
+    @IBAction func nopeButtonPressed(sender: UIButton) {
+        
+        println("nope")
+        
+    }
+    
+    @IBAction func okButtonPressed(sender: UIButton) {
+        
+        println("ok")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,4 +64,18 @@ class FindViewController: UIViewController {
             }
         }
     }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
+        self.okButton.setImage(UIImage(named: "ok.png") as UIImage!, forState: nil)
+        
+    }
+    
+    
+    
+    
+    
+    
 }

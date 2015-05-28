@@ -61,7 +61,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate, UIPageViewCont
         }
         else
         {
-            
             PFFacebookUtils.logInInBackgroundWithAccessToken(result.token, block: { (user: PFUser?, error: NSError?) -> Void in
                 if let parseUser = user
                 {
