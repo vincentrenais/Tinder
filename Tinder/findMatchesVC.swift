@@ -160,6 +160,10 @@ class FindMatchesVC: UIViewController {
     }
 
     @IBAction func nopeButtonPressed(sender: UIButton) {
+        self.nopeSelected()
+    }
+    
+    func nopeSelected(){
         if self.currentMatchIndex < self.listOfMatches.count - 1
         {
             self.iterateThroughListOfMatches(self.currentMatchIndex + 1, aroundGeoPoint: self.currentLocation!)
@@ -173,6 +177,10 @@ class FindMatchesVC: UIViewController {
     }
     
     @IBAction func okButtonPressed(sender: UIButton) {
+        self.okSelected()
+    }
+    
+    func okSelected(){
         if let user = PFUser.currentUser()
         {
             var request = PFObject(className: "requestPool")
