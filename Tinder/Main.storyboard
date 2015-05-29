@@ -43,14 +43,14 @@
                     </view>
                     <connections>
                         <outlet property="FacebookLoginButton" destination="v4U-7h-Yvs" id="3Py-SN-8kc"/>
-                        <segue destination="LOG-CL-rSZ" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="ZWz-y1-q2v"/>
+                        <segue destination="adk-cK-0Ex" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="ZWz-y1-q2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="485" y="448"/>
         </scene>
-        <!--Find MatchesVC-->
+        <!--Item-->
         <scene sceneID="A3g-As-pVQ">
             <objects>
                 <viewController storyboardIdentifier="findMatchesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LOG-CL-rSZ" customClass="FindMatchesVC" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
@@ -204,6 +204,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="cej-bC-Zpb"/>
                     <connections>
                         <outlet property="goBackButton" destination="GhU-6Q-qS4" id="ztb-ac-PPK"/>
                         <outlet property="nopeButton" destination="HIO-84-1Sc" id="jjt-Lv-nU9"/>
@@ -220,7 +221,25 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1364" y="448"/>
+            <point key="canvasLocation" x="2063" y="448"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="24B-Lx-A4l">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="adk-cK-0Ex" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="0J0-gp-Dfp">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LOG-CL-rSZ" kind="relationship" relationship="viewControllers" id="3Rc-4g-ztk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9u-LL-QG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1251" y="448"/>
         </scene>
     </scenes>
     <resources>
