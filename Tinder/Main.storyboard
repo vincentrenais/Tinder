@@ -208,6 +208,7 @@
                         <outlet property="goBackButton" destination="GhU-6Q-qS4" id="ztb-ac-PPK"/>
                         <outlet property="nopeButton" destination="HIO-84-1Sc" id="jjt-Lv-nU9"/>
                         <outlet property="okButton" destination="x0h-dw-udN" id="HpS-Ax-uIX"/>
+                        <outlet property="profileView" destination="11D-Ce-KWt" id="5Zg-AT-AQO"/>
                         <outlet property="userEmail" destination="QUR-Kd-O0y" id="Ngq-qV-D6x"/>
                         <outlet property="userName" destination="3hA-pd-VK7" id="uiV-ts-9ZB"/>
                         <outlet property="userPhoto" destination="nvQ-bA-xep" id="wqi-p9-2JE"/>

@@ -29,6 +29,7 @@ class FindMatchesVC: UIViewController {
     @IBOutlet weak var nopeButton: UIButton!
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var goBackButton: UIButton!
+
     
     var listOfMatches = []
     var currentMatchIndex = 1
@@ -115,14 +116,26 @@ class FindMatchesVC: UIViewController {
                 { () -> Void in
                     profile.frame = self.frame
                 }, completion: {
-                    (success) -> Void in
-                    self.pictureSelectionState = .NoSelection
+                    (completed) -> Void in
+                    if (completed) {
+                        
+                        switch self.pictureSelectionState {
+                        case .SwipingLeft:
+                            println("YO!")
+                        case .SwipedLeft:
+                            self.selectedNope()
+                        case .SwipingRight:
+                            println("YO!")
+                        case .SwipedRight:
+                            self.selectedOK()
+                        default:
+                            println("Oh NO!")
+                        }
+                        self.pictureSelectionState = .NoSelection
+                    }
             })
-            
-            
         }
         // TODO: load next image
-
     }
     
     
@@ -158,8 +171,12 @@ class FindMatchesVC: UIViewController {
             }
         }
     }
-
+    
     @IBAction func nopeButtonPressed(sender: UIButton) {
+        selectedNope()
+    }
+    
+    func selectedNope(){
         if self.currentMatchIndex < self.listOfMatches.count - 1
         {
             self.iterateThroughListOfMatches(self.currentMatchIndex + 1, aroundGeoPoint: self.currentLocation!)
@@ -172,15 +189,19 @@ class FindMatchesVC: UIViewController {
         }
     }
     
+    
     @IBAction func okButtonPressed(sender: UIButton) {
+        selectedOK()
+    }
+    
+    func selectedOK (){
         if let user = PFUser.currentUser()
         {
             var request = PFObject(className: "requestPool")
-            request.addObject(user.objectId!, forKey: "senderID")
-            request.addObject(self.currentMatch!, forKey: "receiverID")
-            request.addObject(false, forKey: "State")
+            request["senderID"] = user.objectId
+            request["receiverID"] = self.currentMatch
+            request["state"] = false
             request.saveInBackground()
-            
         }
     }
     

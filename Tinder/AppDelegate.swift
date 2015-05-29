@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         if let currentUser = PFUser.currentUser() {
-            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("findMatchesVC") as! FindMatchesVC
+            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("findMatchesVC") as? FindMatchesVC
         } else {
             self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginVC") as? UIViewController
         }
