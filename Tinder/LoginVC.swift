@@ -14,11 +14,19 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         facebookLoginButton.delegate = self
         facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
     }
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return UIInterfaceOrientation.Portrait.rawValue
+    }
     
     
     // FACEBOOK DELEGATE METHOD

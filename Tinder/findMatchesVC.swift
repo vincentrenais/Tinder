@@ -70,6 +70,16 @@ class FindMatchesVC: UIViewController {
     }
     
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return UIInterfaceOrientation.Portrait.rawValue
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
         self.okButton.setImage(UIImage(named: "ok.png") as UIImage!, forState: nil)
@@ -100,6 +110,7 @@ class FindMatchesVC: UIViewController {
             // do nothing
             if profile.center.x <  20 {
                 pictureSelectionState = .SwipedLeft
+//                profile.center.x = -50
             }
         } else {
             //println("chosen")
@@ -115,14 +126,26 @@ class FindMatchesVC: UIViewController {
                 { () -> Void in
                     profile.frame = self.frame
                 }, completion: {
-                    (success) -> Void in
-                    self.pictureSelectionState = .NoSelection
+                    (completed) -> Void in
+                    if (completed) {
+                        
+                        switch self.pictureSelectionState {
+                        case .SwipingLeft:
+                            println("Swiping Left")
+                        case .SwipedLeft:
+                            self.nopeSelected()
+                        case .SwipingRight:
+                            println("Swiping Right")
+                        case .SwipedRight:
+                            self.okSelected()
+                        default:
+                            println("Oh NO!")
+                        }
+                        self.pictureSelectionState = .NoSelection
+                    }
             })
-            
-            
         }
         // TODO: load next image
-
     }
     
     
