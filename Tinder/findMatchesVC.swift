@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
+class FindMatchesVC: UIViewController {
     
     @IBOutlet weak var userPhoto: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -18,67 +18,60 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var okButton: UIButton!
     @IBOutlet weak var goBackButton: UIButton!
     
-    var listOfMatch = []
+    var listOfMatches = []
     var currentMatch = 0
-    var listOfRequest = []
+    var listOfRequests = []
+    var currentLocation: PFGeoPoint?
     
-    var userLatitude: Double?
-    var userLongitude: Double?
-    
-    var locationManager = CLLocationManager()
-    
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        self.iterateThroughListOfMatches(currentMatch)
         
-        self.locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-
+        if let user = PFUser.currentUser()
+        {
+           PFGeoPoint.geoPointForCurrentLocationInBackground
+            {
+                (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+                
+                if (error != nil)
+                {
+                    // do something with the new geoPoint
+                }
+                
+                self.currentLocation = geoPoint
+                
+                if let point = self.currentLocation
+                {
+                    user["currentLocation"] = geoPoint
+                    user.saveInBackground()
+                    self.iterateThroughListOfMatches(self.currentMatch, aroundGeoPoint: point)
+                }
+            }
+        }
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
+    
+    override func viewWillAppear(animated: Bool) {
         self.nopeButton.setImage(UIImage(named: "nope.png") as UIImage!, forState: nil)
         self.okButton.setImage(UIImage(named: "ok.png") as UIImage!, forState: nil)
         self.goBackButton.setImage(UIImage(named: "goBack.png") as UIImage!, forState: nil)
         self.goBackButton.alpha = 0
-        
-        if let user = PFUser.currentUser()
-        {
-            user["latitude"] = self.userLatitude
-            user["longitude"] = self.userLongitude
-        }
     }
 
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        let location = locations[0] as! CLLocation
-
-        if let user = PFUser.currentUser()
-        {
-            self.userLatitude = location.coordinate.latitude
-            self.userLongitude = location.coordinate.longitude
-        }
-    }
-    
-    
-    func iterateThroughListOfMatches(i: Int)
+    func iterateThroughListOfMatches(i: Int, aroundGeoPoint:PFGeoPoint)
     {
-        var query = PFUser.query()
-        
-        query!.findObjectsInBackgroundWithBlock {
+        var kQuery = PFQuery(className: "_User")
+        kQuery.whereKey("currentLocation", nearGeoPoint: aroundGeoPoint, withinKilometers: 10)
+        kQuery.findObjectsInBackgroundWithBlock {
             (users: [AnyObject]?, error: NSError?) -> Void in
             if let error = error {
                 println(error.description)
             }
             else
             {
-                self.listOfMatch = users!
-                let closestUser: AnyObject = self.listOfMatch[i]
+                self.listOfMatches = users!
+                let closestUser: AnyObject = self.listOfMatches[i]
                 let name = closestUser["name"] as? String
                 self.userName.text = name!
                 let email = closestUser["email"] as? String
@@ -92,12 +85,11 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
                 self.currentMatch = i
             }
         }
-
     }
 
     @IBAction func nopeButtonPressed(sender: UIButton) {
         println("nope")
-        self.iterateThroughListOfMatches(self.currentMatch + 1)
+        self.iterateThroughListOfMatches(self.currentMatch + 1, aroundGeoPoint: self.currentLocation!)
         self.goBackButton.alpha = 1
     }
     
@@ -107,9 +99,8 @@ class FindMatchesVC: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func goBackButtonPressed(sender: UIButton) {
-        self.iterateThroughListOfMatches(self.currentMatch - 1)
+        self.iterateThroughListOfMatches(self.currentMatch - 1, aroundGeoPoint: self.currentLocation!)
         self.goBackButton.alpha = 0
-        
     }
 
 }

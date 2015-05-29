@@ -8,45 +8,18 @@
 
 import UIKit
 
-class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDelegate {
+class LoginVC: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet var facebookLoginButton: FBSDKLoginButton!
-    var locationManager = CLLocationManager()
-    var userLatitude: Double?
-    var userLongitude: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        facebookLoginButton.delegate = self
-        
-        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
-        
-        self.locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
 
+        facebookLoginButton.delegate = self
+        facebookLoginButton.readPermissions = ["public_profile", "email", "user_friends"]
     }
     
     
-//    override func viewDidAppear(animated: Bool) {
-//    
-//        if let user = PFUser.currentUser()
-//        {
-//            self.performSegueWithIdentifier("loginSegue", sender: self)
-//        }
-//    }
-    
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
-    {
-        let location = locations[0] as! CLLocation
-        
-        self.userLatitude = location.coordinate.latitude
-        self.userLongitude = location.coordinate.longitude
-    }
     
     // FACEBOOK DELEGATE METHOD
     
@@ -71,11 +44,9 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDele
                     
                     let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "/me?fields=email,name,picture.width(300).height(300)", parameters: nil)
                     graphRequest.startWithCompletionHandler({ (connection :FBSDKGraphRequestConnection!, result: AnyObject!, error :NSError!) -> Void in
-                        println("lol")
                         if error != nil {
                             
                         } else {
-                            println("\(result)")
                             if let name = result["name"] as? String{
                                 parseUser["name"] = name
                             }
@@ -89,9 +60,6 @@ class LoginVC: UIViewController, FBSDKLoginButtonDelegate, CLLocationManagerDele
                                 picture = pictureData["url"] as? String {
                                        parseUser["photo"] = picture
                                  }
-                            
-                            parseUser["latitude"] = self.userLatitude
-                            parseUser["longitude"] = self.userLongitude
                             
                             parseUser.saveInBackground()
                             

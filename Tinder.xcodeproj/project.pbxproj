@@ -15,7 +15,6 @@
 		B78B06281B141DC400EF7B0E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78B06261B141DC400EF7B0E /* LaunchScreen.xib */; };
 		B78B06341B141DC500EF7B0E /* TinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B06331B141DC500EF7B0E /* TinderTests.swift */; };
 		B78B06411B14246400EF7B0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B78B06401B14246400EF7B0E /* Main.storyboard */; };
-		B78B06431B14E4AA00EF7B0E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78B06421B14E4AA00EF7B0E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +43,6 @@
 		B78B06331B141DC500EF7B0E /* TinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinderTests.swift; sourceTree = "<group>"; };
 		B78B063D1B1421B400EF7B0E /* Tinder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tinder-Bridging-Header.h"; sourceTree = "<group>"; };
 		B78B06401B14246400EF7B0E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		B78B06421B14E4AA00EF7B0E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +108,6 @@
 				B78B06401B14246400EF7B0E /* Main.storyboard */,
 				B78B061F1B141DC400EF7B0E /* LoginVC.swift */,
 				B78351101B162B9A00101D36 /* findMatchesVC.swift */,
-				B78B06421B14E4AA00EF7B0E /* User.swift */,
 				B78B06241B141DC400EF7B0E /* Images.xcassets */,
 				B78B06261B141DC400EF7B0E /* LaunchScreen.xib */,
 				B78B061B1B141DC400EF7B0E /* Supporting Files */,
@@ -195,6 +192,7 @@
 				TargetAttributes = {
 					B78B06171B141DC400EF7B0E = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = RPSV3Q2499;
 					};
 					B78B062C1B141DC500EF7B0E = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -282,7 +280,6 @@
 				B78351111B162B9A00101D36 /* findMatchesVC.swift in Sources */,
 				B78B06201B141DC400EF7B0E /* LoginVC.swift in Sources */,
 				B78B061E1B141DC400EF7B0E /* AppDelegate.swift in Sources */,
-				B78B06431B14E4AA00EF7B0E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,9 +400,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinder/Tinder-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -417,9 +417,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tinder/Tinder-Bridging-Header.h";
 			};
 			name = Release;

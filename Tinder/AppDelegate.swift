@@ -20,13 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
-        
-        if PFUser.currentUser() != nil
-        {
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var setViewController = mainStoryboard.instantiateViewControllerWithIdentifier("findMatchesVC") as! FindMatchesVC
-            var rootViewController = self.window!.rootViewController
-            rootViewController!.presentViewController(setViewController, animated: false, completion: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        if let currentUser = PFUser.currentUser() {
+            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("findMatchesVC") as! FindMatchesVC
+        } else {
+            self.window?.rootViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginVC") as? UIViewController
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
